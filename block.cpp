@@ -15,6 +15,12 @@ Block::Block(int index, int nonce, string prevHash, string blockHash, string mer
     this -> transactions = transactions;
 }
 
+Block::Block(int index, int nonce){
+    this -> index = index;
+    this -> nonce = nonce;
+    this ->timestamp = time(nullptr);
+}
+
 int Block::getIndex(){
     return this -> index;
 }
@@ -49,7 +55,7 @@ vector<string> Block::getTransactions(){
 
 string Block::genBlockHash(){
     stringstream ss;
-    ss << index << nonce <<prevHash << timestamp;
+    ss << index << nonce << prevHash << timestamp;
 
     return hash(ss.str());
 }

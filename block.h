@@ -16,6 +16,7 @@ private:
 public:
     Block(int index, int nonce, string prevHash, string blockHash, string merkleRootHash,
             time_t timestamp, int difficulty, vector<string> transactions);
+    Block(int index, int nonce);
     int getIndex();
     int getNonce();
     string getPrevHash();
