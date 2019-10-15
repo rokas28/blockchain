@@ -3,6 +3,12 @@
 
 #include "main.h"
 
+struct transaction {
+    string sender;
+    string receiver;
+    double amount;
+};
+
 class User {
 private:
     string name_;
