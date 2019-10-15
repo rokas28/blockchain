@@ -18,14 +18,30 @@ int Block::getIndex() {
     return this -> index;
 }
 
+int Block::getNonce() {
+    return this -> nonce;
+}
+
 string Block::getPrevHash() {
     return this -> prevHash;
 }
 
-string Block::getHash() {
+string Block::getblockHash() {
     return this -> blockHash;
 }
 
-vector<string> Block::getData(){
+string Block::getMerkleRootHash() {
+    return this -> merkleRootHash;
+}
+
+time_t Block::getTimestamp() {
+    return this -> timestamp;
+}
+
+int Block::getDifficulty() {
+    return this -> difficulty;
+}
+
+vector<string> Block::getTransactions(){
     return this -> transactions;
 }

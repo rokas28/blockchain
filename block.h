@@ -16,9 +16,13 @@ private:
 public:
     Block(int index, int nonce, string prevHash, string blockHash, string merkleRootHash,
             time_t timestamp, int difficulty, vector<string> transactions);
-    string getPrevHash();
-    string getHash();
     int getIndex();
-    vector<string> getData();
+    int getNonce();
+    string getPrevHash();
+    string getblockHash();
+    string getMerkleRootHash();
+    time_t getTimestamp();
+    int getDifficulty();
+    vector<string> getTransactions();
 };
 #endif //BLOCKCHAIN_BLOCK_H

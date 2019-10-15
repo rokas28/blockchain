@@ -8,6 +8,7 @@ class Blockchain {
 private:
     vector<Block> chain;
 public:
+    Blockchain();
 };
 
 #endif //BLOCKCHAIN_BLOCKCHAIN_H
