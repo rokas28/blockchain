@@ -1,5 +1,6 @@
 #include "main.h"
 #include "block.h"
+#include "hash.h"
 
 Block::Block(int index, int nonce, string prevHash, string blockHash, string merkleRootHash,
              time_t timestamp, int difficulty, vector<string> transactions){
@@ -14,34 +15,41 @@ Block::Block(int index, int nonce, string prevHash, string blockHash, string mer
     this -> transactions = transactions;
 }
 
-int Block::getIndex() {
+int Block::getIndex(){
     return this -> index;
 }
 
-int Block::getNonce() {
+int Block::getNonce(){
     return this -> nonce;
 }
 
-string Block::getPrevHash() {
+string Block::getPrevHash(){
     return this -> prevHash;
 }
 
-string Block::getblockHash() {
+string Block::getBlockHash(){
     return this -> blockHash;
 }
 
-string Block::getMerkleRootHash() {
+string Block::getMerkleRootHash(){
     return this -> merkleRootHash;
 }
 
-time_t Block::getTimestamp() {
+time_t Block::getTimestamp(){
     return this -> timestamp;
 }
 
-int Block::getDifficulty() {
+int Block::getDifficulty(){
     return this -> difficulty;
 }
 
 vector<string> Block::getTransactions(){
     return this -> transactions;
+}
+
+string Block::genBlockHash(){
+    stringstream ss;
+    ss << index << nonce <<prevHash << timestamp;
+
+    return hash(ss.str());
 }

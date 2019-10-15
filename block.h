@@ -19,10 +19,11 @@ public:
     int getIndex();
     int getNonce();
     string getPrevHash();
-    string getblockHash();
+    string getBlockHash();
     string getMerkleRootHash();
     time_t getTimestamp();
     int getDifficulty();
     vector<string> getTransactions();
+    string genBlockHash();
 };
 #endif //BLOCKCHAIN_BLOCK_H

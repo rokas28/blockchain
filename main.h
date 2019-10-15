@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
 #include <random>
@@ -17,5 +18,6 @@ using std::vector;
 using std::ifstream;
 using std::uniform_int_distribution;
 using std::mt19937;
+using std::stringstream;
 
 #endif //BLOCKCHAIN_MAIN_H
