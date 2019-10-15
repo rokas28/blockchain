@@ -25,6 +25,7 @@ public:
     time_t getTimestamp();
     int getDifficulty();
     vector<string> getTransactions();
+    void Block::setPrevHash(string a);
     string genBlockHash();
 };
 #endif //BLOCKCHAIN_BLOCK_H

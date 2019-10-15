@@ -7,8 +7,11 @@
 class Blockchain {
 private:
     vector<Block> chain;
+
 public:
     Blockchain();
+    Block getLastBlock() const;
+    void addBlock();
 };
 
 #endif //BLOCKCHAIN_BLOCKCHAIN_H

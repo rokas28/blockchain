@@ -18,7 +18,9 @@ Block::Block(int index, int nonce, string prevHash, string blockHash, string mer
 Block::Block(int index, int nonce){
     this -> index = index;
     this -> nonce = nonce;
+    this -> blockHash = genBlockHash();
     this ->timestamp = time(nullptr);
+    this -> difficulty = 3;
 }
 
 int Block::getIndex(){
@@ -51,6 +53,10 @@ int Block::getDifficulty(){
 
 vector<string> Block::getTransactions(){
     return this -> transactions;
+}
+
+void Block::setPrevHash(string a){
+    prevHash = a;
 }
 
 string Block::genBlockHash(){
