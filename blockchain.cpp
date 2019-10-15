@@ -15,7 +15,11 @@ Block Blockchain::getLastBlock() const
 void Blockchain::addBlock(int index, uint32_t difficulty, vector<string> transactions){
 
     Block a(index,difficulty,transactions);
-    a.mineBlock(difficulty);
+    //cout << "Block a(index,difficulty,transactions);" << endl;
     a.setPrevHash(getLastBlock().getBlockHash());
+    //cout << "a.setPrevHash(getLastBlock().getBlockHash());" << endl;
+    a.mineBlock(difficulty);
+    //cout << "a.mineBlock(difficulty);" << endl;
     chain.push_back(a);
+    //cout << "chain.push_back(a);" << endl;
 }

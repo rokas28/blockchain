@@ -57,17 +57,18 @@ void Block::setPrevHash(string a){
 string Block::genBlockHash(){
     stringstream ss;
     ss << index << nonce << prevHash;
+    //cout << ss.str() << endl;
 
     return hash(ss.str());
 }
 
 void Block::mineBlock(uint32_t difficulty){
 
-    string str(difficulty,0);
+    string str(difficulty,'0');
+    //cout << "string str(difficulty,0);" << endl;
     do {
-        nonce++;
-        blockHash = genBlockHash();
+        nonce++; //cout << "nonce++ = " << nonce << endl;
+        blockHash = genBlockHash(); //cout << "blockHash = genBlockHash(); = " << blockHash << endl;
     } while (blockHash.substr(0, difficulty) != str);
-
-    cout << "Block mined: " << blockHash << endl;
+    cout << blockHash << endl;
 }
