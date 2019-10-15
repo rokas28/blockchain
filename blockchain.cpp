@@ -12,10 +12,10 @@ Block Blockchain::getLastBlock() const
     return chain.back();
 }
 
-void Blockchain::addBlock(int index, int difficulty, vector<string> transactions){
+void Blockchain::addBlock(int index, uint32_t difficulty, vector<string> transactions){
 
     Block a(index,difficulty,transactions);
-
+    a.mineBlock(difficulty);
     a.setPrevHash(getLastBlock().getBlockHash());
     chain.push_back(a);
 }

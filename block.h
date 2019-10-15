@@ -11,10 +11,10 @@ private:
     string blockHash;
     string merkleRootHash;
     time_t timestamp;
-    int difficulty;
+    uint32_t difficulty;
     vector<string> transactions;
 public:
-    Block(int index, int difficulty, vector<string> transactions);
+    Block(int index, uint32_t difficulty, vector<string> transactions);
     Block(int index, int nonce);
     int getIndex();
     int getNonce();
@@ -26,5 +26,6 @@ public:
     vector<string> getTransactions();
     void Block::setPrevHash(string a);
     string genBlockHash();
+    void mineBlock(uint32_t difficulty);
 };
 #endif //BLOCKCHAIN_BLOCK_H

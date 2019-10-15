@@ -2,7 +2,7 @@
 #include "block.h"
 #include "hash.h"
 
-Block::Block(int index, int difficulty, vector<string> transactions){
+Block::Block(int index, uint32_t difficulty, vector<string> transactions){
 
     this -> index = index;
     this -> nonce = 0;
@@ -59,4 +59,15 @@ string Block::genBlockHash(){
     ss << index << nonce << prevHash;
 
     return hash(ss.str());
+}
+
+void Block::mineBlock(uint32_t difficulty){
+
+    string str(difficulty,0);
+    do {
+        nonce++;
+        blockHash = genBlockHash();
+    } while (blockHash.substr(0, difficulty) != str);
+
+    cout << "Block mined: " << blockHash << endl;
 }
