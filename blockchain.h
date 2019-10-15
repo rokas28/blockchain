@@ -11,7 +11,7 @@ private:
 public:
     Blockchain();
     Block getLastBlock() const;
-    void addBlock();
+    void addBlock(int index, int difficulty, vector<string> transactions);
 };
 
 #endif //BLOCKCHAIN_BLOCKCHAIN_H
