@@ -4,12 +4,12 @@
 
 Blockchain::Blockchain()
 {
-    chain.emplace_back(Block(0,0));
+    chain_.emplace_back(Block(0,0));
 }
 
 Block Blockchain::getLastBlock() const
 {
-    return chain.back();
+    return chain_.back();
 }
 
 void Blockchain::addBlock(int index, uint32_t difficulty, vector<string> transactions){
@@ -20,6 +20,6 @@ void Blockchain::addBlock(int index, uint32_t difficulty, vector<string> transac
     //cout << "a.setPrevHash(getLastBlock().getBlockHash());" << endl;
     a.mineBlock(difficulty);
     //cout << "a.mineBlock(difficulty);" << endl;
-    chain.push_back(a);
+    chain_.push_back(a);
     //cout << "chain.push_back(a);" << endl;
 }

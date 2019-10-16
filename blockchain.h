@@ -6,7 +6,7 @@
 
 class Blockchain {
 private:
-    vector<Block> chain;
+    vector<Block> chain_;
 public:
     Blockchain();
     Block getLastBlock() const;

@@ -5,14 +5,14 @@
 
 class Block{
 private:
-    int index;
-    int nonce;
-    string prevHash;
-    string blockHash;
-    string merkleRootHash;
-    time_t timestamp;
-    uint32_t difficulty;
-    vector<string> transactions;
+    int index_;
+    int nonce_;
+    string prevHash_;
+    string blockHash_;
+    string merkleRootHash_;
+    time_t timestamp_;
+    uint32_t difficulty_;
+    vector<string> transactions_;
 public:
     Block(int index, uint32_t difficulty, vector<string> transactions);
     Block(int index, int nonce);
