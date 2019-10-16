@@ -14,6 +14,7 @@ private:
 public:
     User(string name, string publicKey, double balance);
     User();
+    string getName();
 };
 
 User::User(string name, string publicKey, double balance){
@@ -26,6 +27,10 @@ User::User(){
     this -> name_ = "-";
     this -> publicKey_ = "-";
     this -> balance_ = 0;
+};
+
+string User::getName(){
+    return this -> name_;
 };
 
 vector<User> genUsers(int n) {
@@ -50,11 +55,12 @@ void genTransactions(int n, Blockchain& blockchain, vector<User>& users){
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> random(0,1000);
+    std::uniform_int_distribution<int> amount(0,100);
     vector<Transaction> transactions;
     for(int i = 0; i < n; i++){
-        //transactions.emplace_back(Transaction(sen,rec,amo));
+        transactions.emplace_back(Transaction(users[random(gen)].getName(),users[random(gen)].getName(),amount(gen)));
     }
-
+    blockchain.addAllTransactions(transactions);
 };
 
 #endif //BLOCKCHAIN_USER_H

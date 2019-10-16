@@ -8,10 +8,13 @@ class Blockchain {
 private:
     vector<Block> chain_;
 public:
-    vector<Transaction> allTransactions_;
+    vector<Transaction> allTransactions;
     Blockchain();
     Block getLastBlock() const;
     void addBlock(int index, uint32_t difficulty, vector<Transaction> transactions);
+    void addAllTransactions(vector<Transaction>& transactions){
+        allTransactions.emplace_back(transactions);
+    };
 };
 
 #endif //BLOCKCHAIN_BLOCKCHAIN_H
