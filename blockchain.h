@@ -13,7 +13,7 @@ public:
     Block getLastBlock() const;
     void addBlock(int index, uint32_t difficulty, vector<Transaction> transactions);
     void addAllTransactions(vector<Transaction>& transactions){
-        allTransactions.emplace_back(transactions);
+        allTransactions = transactions;
     };
 };
 

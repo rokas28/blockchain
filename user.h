@@ -51,13 +51,13 @@ vector<User> genUsers(int n) {
     return users;
 }
 
-void genTransactions(int n, Blockchain& blockchain, vector<User>& users){
+void genTransactions(int n, int m, Blockchain& blockchain, vector<User>& users){
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> random(0,1000);
+    std::uniform_int_distribution<int> random(0,n-1);
     std::uniform_int_distribution<int> amount(0,100);
     vector<Transaction> transactions;
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < m; i++){
         transactions.emplace_back(Transaction(users[random(gen)].getName(),users[random(gen)].getName(),amount(gen)));
     }
     blockchain.addAllTransactions(transactions);
