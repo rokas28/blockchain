@@ -4,10 +4,11 @@
 #include "hash.h"
 #include "block.h"
 #include "blockchain.h"
+#include "user.h"
 
 int main() {
 
-    vector<string>s;
+    vector<Transaction>s;
     Blockchain a = Blockchain();
 
     cout << "1 mined block:  ";

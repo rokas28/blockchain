@@ -5,14 +5,14 @@
 Blockchain::Blockchain()
 {
     chain_.emplace_back(Block(0,0));
-}
+};
 
 Block Blockchain::getLastBlock() const
 {
     return chain_.back();
-}
+};
 
-void Blockchain::addBlock(int index, uint32_t difficulty, vector<string> transactions){
+void Blockchain::addBlock(int index, uint32_t difficulty, vector<Transaction> transactions){
 
     Block a(index,difficulty,transactions);
     //cout << "Block a(index,difficulty,transactions);" << endl;
@@ -22,4 +22,4 @@ void Blockchain::addBlock(int index, uint32_t difficulty, vector<string> transac
     //cout << "a.mineBlock(difficulty);" << endl;
     chain_.push_back(a);
     //cout << "chain.push_back(a);" << endl;
-}
+};

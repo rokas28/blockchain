@@ -1,13 +1,14 @@
 #include "main.h"
 #include "block.h"
 #include "hash.h"
+//#include "user.h"
 
-Block::Block(int index, uint32_t difficulty, vector<string> transactions){
+Block::Block(int index, uint32_t difficulty, vector<Transaction> transactions){
 
     this -> index_ = index;
     this -> nonce_ = 0;
     this -> difficulty_ = difficulty;
-    this -> transactions_ = transactions;
+    //this -> transactions_ = transactions;
 }
 
 Block::Block(int index, int nonce){
@@ -46,7 +47,7 @@ int Block::getDifficulty(){
     return this -> difficulty_;
 }
 
-vector<string> Block::getTransactions(){
+vector<Transaction> Block::getTransactions(){
     return this -> transactions_;
 }
 

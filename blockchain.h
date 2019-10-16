@@ -8,9 +8,10 @@ class Blockchain {
 private:
     vector<Block> chain_;
 public:
+    vector<Transaction> allTransactions_;
     Blockchain();
     Block getLastBlock() const;
-    void addBlock(int index, uint32_t difficulty, vector<string> transactions);
+    void addBlock(int index, uint32_t difficulty, vector<Transaction> transactions);
 };
 
 #endif //BLOCKCHAIN_BLOCKCHAIN_H
