@@ -1,6 +1,6 @@
-#include "main.h"
-#include "block.h"
-#include "hash.h"
+#include "../headers/main.h"
+#include "../headers/block.h"
+#include "../headers/hash.h"
 //#include "user.h"
 
 Block::Block(int index, uint32_t difficulty, vector<Transaction> transactions){

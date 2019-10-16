@@ -1,5 +1,5 @@
-#include "hash.h"
-#include "main.h"
+#include "../headers/hash.h"
+#include "../headers/main.h"
 
 string readFromFile(string file) {
     string str;

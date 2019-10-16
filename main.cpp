@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "main.h"
-#include "hash.h"
-#include "block.h"
-#include "blockchain.h"
-#include "user.h"
+#include "headers/main.h"
+#include "headers/hash.h"
+#include "headers/block.h"
+#include "headers/blockchain.h"
+#include "headers/user.h"
 
 const int n = 100;
 const int m = 1000;

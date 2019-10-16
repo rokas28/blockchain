@@ -1,6 +1,6 @@
-#include "main.h"
-#include "block.h"
-#include "blockchain.h"
+#include "../headers/main.h"
+#include "../headers/block.h"
+#include "../headers/blockchain.h"
 
 Blockchain::Blockchain()
 {
