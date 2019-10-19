@@ -8,32 +8,27 @@
 
 const int n = 100;
 const int m = 1000;
+const int d = 1;
 
 int main() {
 
     vector<Transaction> t;
     vector<User> u;
     u = genUsers(n);
-    cout << "users size: " << u.size() << endl;
+    cout << "__users size: " << u.size() << endl;
     Blockchain a = Blockchain();
     genTransactions(n,m,a,u);
-    cout << "allTransactions size:  " << a.allTransactions.size() << endl;
+    cout << "__allTransactions size:  " << a.allTransactions.size() << endl;
+    cout << "__chain size: " << a.getBlockchain().size() << endl;
 
-   /* cout << "1 mined block:  ";
-    a.addBlock(1,1,t);
-    cout << endl;
-
-    cout << "2 mined block:  ";
-    a.addBlock(2,2,t);
-    cout << endl;
-
-    cout << "3 mined block:  ";
-    a.addBlock(3,1,t);
-    cout << endl;
-
-    cout << "4 mined block:  ";
-    a.addBlock(4,2,t);
-    cout << endl;*/
+    int i = 1;
+    while(a.allTransactions.size() >= 100){
+        cout  << i << " mined block:  ";
+        a.addBlock(i,d,a.allTransactions);
+        cout << "__allTransactions size:  " << a.allTransactions.size() << endl << endl;
+        i++;
+    };
+    cout << "__chain size: " << a.getBlockchain().size() << endl;
 
     return 0;
 }

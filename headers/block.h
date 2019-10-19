@@ -26,8 +26,8 @@ private:
     uint32_t difficulty_;
     vector<Transaction> transactions_;
 public:
-    Block(int index, uint32_t difficulty, vector<Transaction> transactions);
-    Block(int index, int nonce);
+    Block(int index, uint32_t difficulty);
+    //Block(int index, int nonce);
     int getIndex();
     int getNonce();
     string getPrevHash();
@@ -39,5 +39,9 @@ public:
     void Block::setPrevHash(string a);
     string genBlockHash();
     void mineBlock(uint32_t difficulty);
+    void setBlockTransactions(vector<Transaction> &allTransactions);
+    void addTransaction(Transaction transaction){
+        transactions_.push_back(transaction);
+    }
 };
 #endif //BLOCKCHAIN_BLOCK_H
