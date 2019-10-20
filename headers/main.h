@@ -9,6 +9,8 @@
 #include <random>
 #include <algorithm>
 #include <chrono>
+#include <iomanip>
+#include <ctime>
 
 using std::cout;
 using std::cin;

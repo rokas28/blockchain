@@ -7,9 +7,12 @@
 class Blockchain {
 private:
     vector<Block> chain_;
+    Block *root_;
+    int length_;
 public:
     vector<Transaction> allTransactions;
     Blockchain();
+   // Blockchain(Block *&root);
     Block getLastBlock() const;
     void addBlock(int index, uint32_t difficulty, vector<Transaction>& allTransactions);
     void addAllTransactions(vector<Transaction>& transactions){
@@ -18,7 +21,12 @@ public:
     void addBlock(Block block){
         chain_.push_back(block);
     };
+    //void addNode(int index, uint32_t difficulty, vector<Transaction>& allTransactions);
     vector<Block> Blockchain::getBlockchain();
+    void printBlockchain();
+    int getBlockchainLength(){
+        return length_;
+    }
 };
 
 #endif //BLOCKCHAIN_BLOCKCHAIN_H

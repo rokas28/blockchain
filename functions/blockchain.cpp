@@ -2,9 +2,14 @@
 #include "../headers/block.h"
 #include "../headers/blockchain.h"
 
-Blockchain::Blockchain()
+/*Blockchain::Blockchain()
 {
     chain_.emplace_back(Block(0,0));
+};*/
+Blockchain::Blockchain()
+{
+    this -> root_ = NULL;
+    this -> length_ = 0;
 };
 
 Block Blockchain::getLastBlock() const
@@ -16,7 +21,7 @@ vector<Block> Blockchain::getBlockchain(){
     return this -> chain_;
 }
 
-void Blockchain::addBlock(int index, uint32_t difficulty, vector<Transaction>& allTransactions){
+/*void Blockchain::addBlock(int index, uint32_t difficulty, vector<Transaction>& allTransactions){
 
     Block a(index,difficulty);
     a.setBlockTransactions(allTransactions);
@@ -29,4 +34,25 @@ void Blockchain::addBlock(int index, uint32_t difficulty, vector<Transaction>& a
     addBlock(a);
     //chain_.push_back(a);
     //cout << "chain.push_back(a);" << endl;
-};
+};*/
+
+void Blockchain::addBlock(int index, uint32_t difficulty, vector<Transaction>& allTransactions){
+    Block *t = new Block(index,difficulty);
+    t->prevHash = root_;
+    t->setTimestamp();
+    t->setBlockTransactions(allTransactions);
+    t->merkleRootHash();
+    t->mineBlock(difficulty);
+    root_ = t;
+    length_++;
+}
+
+void Blockchain::printBlockchain() {
+    int i = length_;
+    while (root_) {
+        cout << "Block: " << i << " | Index: " << root_->getIndex() << " | Nonce: " << root_->getNonce() << " | Hash: " << root_->getBlockHash() << endl;
+        cout <<  " | Timestamp: " << root_->getTimestamp() << endl << endl;
+        root_ = root_->prevHash;
+        i--;
+    }
+}

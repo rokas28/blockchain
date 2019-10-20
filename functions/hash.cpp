@@ -37,13 +37,13 @@ long long int seedGen(string str) {
     long long int seed;
     seed = str.length() * str.length() * 12345;
     for(int i = 0; i < str.length(); i++){
-        if(i%2!=0)seed = seed + ((int)str[i]/3*2);
-        if(i%3!=0)seed = seed + ((int)str[i]/4*3);
-        if(i%4!=0)seed = seed + ((int)str[i]/3*5);
-        if(i%5!=0)seed = seed + ((int)str[i]/5*3);
-        if(i%6!=0)seed = seed + ((int)str[i]/4*5);
-        if(i%7!=0)seed = seed + ((int)str[i]/3*7);
-        if(i%9!=0)seed = seed + ((int)str[i]/4*9);
+        if(i%2!=0)seed = seed + ((int)str[i]/3*2) +159;
+        if(i%3!=0)seed = seed + ((int)str[i]/4*3) + 786;
+        if(i%4!=0)seed = seed + ((int)str[i]/3*5) + 854;
+        if(i%5!=0)seed = seed + ((int)str[i]/5*3) + 982;
+        if(i%6!=0)seed = seed + ((int)str[i]/4*5) + 352;
+        if(i%7!=0)seed = seed + ((int)str[i]/3*7) + 175;
+        if(i%9!=0)seed = seed + ((int)str[i]/4*9) + 369;
         seed = seed + (int)str[i] + 134679285;
     }
     return seed;

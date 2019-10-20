@@ -22,10 +22,12 @@ private:
     string prevHash_;
     string blockHash_;
     string merkleRootHash_;
-    time_t timestamp_;
+    string timestamp_;
     uint32_t difficulty_;
     vector<Transaction> transactions_;
+
 public:
+    Block *prevHash;
     Block(int index, uint32_t difficulty);
     //Block(int index, int nonce);
     int getIndex();
@@ -33,7 +35,7 @@ public:
     string getPrevHash();
     string getBlockHash();
     string getMerkleRootHash();
-    time_t getTimestamp();
+    string getTimestamp();
     int getDifficulty();
     vector<Transaction> getTransactions();
     void Block::setPrevHash(string a);
@@ -41,7 +43,9 @@ public:
     void mineBlock(uint32_t difficulty);
     void setBlockTransactions(vector<Transaction> &allTransactions);
     void addTransaction(Transaction transaction){
-        transactions_.push_back(transaction);
+        this->transactions_.push_back(transaction);
     }
+    void merkleRootHash();
+    void setTimestamp();
 };
 #endif //BLOCKCHAIN_BLOCK_H

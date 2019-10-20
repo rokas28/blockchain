@@ -4,7 +4,6 @@
 //#include "user.h"
 
 Block::Block(int index, uint32_t difficulty){
-
     this -> index_ = index;
     this -> nonce_ = 0;
     this -> difficulty_ = difficulty;
@@ -38,7 +37,7 @@ string Block::getMerkleRootHash(){
     return this -> merkleRootHash_;
 }
 
-time_t Block::getTimestamp(){
+string Block::getTimestamp(){
     return this -> timestamp_;
 }
 
@@ -56,9 +55,8 @@ void Block::setPrevHash(string a){
 
 string Block::genBlockHash(){
     stringstream ss;
-    ss << index_ << nonce_ << prevHash_;
+    ss << index_ << nonce_ << merkleRootHash_ << timestamp_;
     //cout << ss.str() << endl;
-
     return hash(ss.str());
 }
 
@@ -67,8 +65,8 @@ void Block::mineBlock(uint32_t difficulty){
     string str(difficulty,'0');
     //cout << "string str(difficulty,0);" << endl;
     do {
-        nonce_++; //cout << "nonce++ = " << nonce << endl;
-        blockHash_ = genBlockHash(); //cout << "blockHash = genBlockHash(); = " << blockHash << endl;
+        nonce_++; //cout << "nonce++ = " << nonce_ << endl;
+        blockHash_ = genBlockHash(); //cout << "blockHash = genBlockHash(); = " << blockHash_ << endl;
     } while (blockHash_.substr(0, difficulty) != str);
     cout << blockHash_ << endl;
 }
@@ -79,19 +77,32 @@ void Block::setBlockTransactions(vector<Transaction>& allTransactions){
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> random(0,allTransactions.size()-1);
 
-    //cout << endl << endl;
     //cout << "allTransactions size: " << allTransactions.size() << endl;
 
-    vector<Transaction> tempTransactions;
     for(int i = 0; i <= 99; i ++){
         int t = random(gen);
-        //tempTransactions.push_back(allTransactions[t]);
         addTransaction(allTransactions[t]);
         auto it = allTransactions.begin() + t;
         std::rotate(it, it + 1, allTransactions.end());
     }
     allTransactions.erase(allTransactions.end()-100,allTransactions.end());
-
     //cout << "allTransactions size: " << allTransactions.size() << endl;
-    //cout << "tempTransactions size: " << tempTransactions.size() << endl << endl;
+};
+
+void Block::merkleRootHash(){
+    string transactionsHash;
+    for(int i = 0; i < transactions_.size(); i++){
+        transactionsHash = transactionsHash + transactions_[i].sender_ + transactions_[i].receiver_;
+    }
+    //cout << transactionsHash << endl;
+    merkleRootHash_ = hash(transactionsHash);
+    //cout << "  merkleRootHash(): " << merkleRootHash_ << endl;
+};
+
+void Block::setTimestamp(){
+    stringstream ss;
+    auto timestamp = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    auto tm = *std::localtime(&timestamp);
+    ss << std::put_time(&tm, "%F %H:%M:%S");
+    timestamp_ = ss.str();
 };

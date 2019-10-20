@@ -37,15 +37,16 @@ vector<User> genUsers(int n) {
     std::random_device rd;
     std::mt19937 gen(rd());
     vector<User> users;
-    string l_name(16,0);
+    string l_name(30,0);
     string name;
     string publicKey;
     uniform_int_distribution<int> nameGen(48, 122);
-    for (int i = 0; i < 16; i++) l_name[i] = nameGen(gen);
-    name = hash(l_name);
-    publicKey = hash(name);
     std::uniform_int_distribution<int> balance(100,1000000);
     for (int i = 0; i < n; i++) {
+        for (int i = 0; i < 30; i++) l_name[i] = nameGen(gen);
+        name = hash(l_name);
+        publicKey = hash(name);
+        //cout << "user: " << i << " __ " << name << " _ " << publicKey << endl;
         users.emplace_back(User(name,publicKey,balance(gen)));
     }
     return users;

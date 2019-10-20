@@ -6,9 +6,9 @@
 #include "headers/blockchain.h"
 #include "headers/user.h"
 
-const int n = 100;
-const int m = 1000;
-const int d = 1;
+const int n = 1000;
+const int m = 10000;
+const int d = 2;
 
 int main() {
 
@@ -19,16 +19,17 @@ int main() {
     Blockchain a = Blockchain();
     genTransactions(n,m,a,u);
     cout << "__allTransactions size:  " << a.allTransactions.size() << endl;
-    cout << "__chain size: " << a.getBlockchain().size() << endl;
-
+    cout << "__Blockchain size: " << a.getBlockchainLength() << endl;
     int i = 1;
     while(a.allTransactions.size() >= 100){
         cout  << i << " mined block:  ";
         a.addBlock(i,d,a.allTransactions);
-        cout << "__allTransactions size:  " << a.allTransactions.size() << endl << endl;
+        cout << "__allTransactions size:  " << a.allTransactions.size() << endl;
+        //cout << "Block added" << endl << endl;
         i++;
     };
-    cout << "__chain size: " << a.getBlockchain().size() << endl;
+    cout << "__Blockchain size: " << a.getBlockchainLength() << endl;
+    a.printBlockchain();
 
     return 0;
 }
