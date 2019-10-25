@@ -78,24 +78,28 @@ void Block::setBlockTransactions(vector<Transaction>& allTransactions){
     std::uniform_int_distribution<int> random(0,allTransactions.size()-1);
 
     //cout << "allTransactions size: " << allTransactions.size() << endl;
-
-    for(int i = 0; i <= 99; i ++){
+    int size = 0;
+    if (allTransactions.size() >= 100)size = 100;
+    else size = allTransactions.size();
+    for(int i = 0; i < size; i ++){
         int t = random(gen);
         addTransaction(allTransactions[t]);
         auto it = allTransactions.begin() + t;
         std::rotate(it, it + 1, allTransactions.end());
     }
-    allTransactions.erase(allTransactions.end()-100,allTransactions.end());
+    allTransactions.erase(allTransactions.end()-size,allTransactions.end());
     //cout << "allTransactions size: " << allTransactions.size() << endl;
 };
 
 void Block::merkleRootHash(){
-    string transactionsHash;
+    //string transactionsHash;
+    stringstream ss;
     for(int i = 0; i < transactions_.size(); i++){
-        transactionsHash = transactionsHash + transactions_[i].sender_ + transactions_[i].receiver_;
+        //transactionsHash = transactionsHash + transactions_[i].sender_ + transactions_[i].receiver_;
+        ss << transactions_[i].sender_.getPublicKey() << transactions_[i].receiver_.getPublicKey() << transactions_[i].amount_;
     }
     //cout << transactionsHash << endl;
-    merkleRootHash_ = hash(transactionsHash);
+    merkleRootHash_ = hash(ss.str());
     //cout << "  merkleRootHash(): " << merkleRootHash_ << endl;
 };
 

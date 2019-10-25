@@ -56,3 +56,27 @@ void Blockchain::printBlockchain() {
         i--;
     }
 }
+
+void transactionValidation(vector<Transaction>& allTransactions){
+    string a;
+    for (auto &i : allTransactions) {
+        stringstream ss;
+        ss << i.sender_.getPublicKey() << i.receiver_.getPublicKey() << i.amount_;
+        a = hash(ss.str());
+        if(i.transactionID_ != a)throw "Ivalid Transaction!";
+        //cout << a << " " << i.transactionID_ << endl;
+    }
+};
+
+void balanceValidation(vector<Transaction>& allTransactions){
+    int k = 0;
+    for (int i = 0; i < allTransactions.size(); i ++){
+        if (allTransactions[i].sender_.getBalance() < allTransactions[i].amount_){
+            auto it = allTransactions.begin() + i;
+            std::rotate(it, it + 1, allTransactions.end());
+            k++;
+        }
+       // cout << "Balance: " << allTransactions[i].sender_.getBalance() << " | amount: " << allTransactions[i].amount_ << endl;
+    }
+    allTransactions.erase(allTransactions.end()-k,allTransactions.end());
+};

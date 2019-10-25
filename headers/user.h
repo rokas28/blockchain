@@ -6,18 +6,28 @@
 #include "block.h"
 #include "blockchain.h"
 
-class User {
+/*class User {
 private:
     string name_;
     string publicKey_;
     double balance_;
 public:
-    User(string name, string publicKey, double balance);
-    User();
-    string getName();
+    User(string name, string publicKey, double balance){
+        this -> name_ = name;
+        this -> publicKey_ = publicKey;
+        this -> balance_ = balance;
+    }
+    User(){
+        this -> name_ = "-";
+        this -> publicKey_ = "-";
+        this -> balance_ = 0;
+    }
+    string getName(){
+        return this -> name_;
+    }
 };
-
-User::User(string name, string publicKey, double balance){
+*/
+/*User::User(string name, string publicKey, double balance){
     this -> name_ = name;
     this -> publicKey_ = publicKey;
     this -> balance_ = balance;
@@ -31,7 +41,7 @@ User::User(){
 
 string User::getName(){
     return this -> name_;
-};
+};*/
 
 vector<User> genUsers(int n) {
     std::random_device rd;
@@ -56,10 +66,10 @@ void genTransactions(int n, int m, Blockchain& blockchain, vector<User>& users){
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> random(0,n-1);
-    std::uniform_int_distribution<int> amount(0,100);
+    std::uniform_int_distribution<int> amount(1,10000);
     vector<Transaction> transactions;
     for(int i = 0; i < m; i++){
-        transactions.emplace_back(Transaction(users[random(gen)].getName(),users[random(gen)].getName(),amount(gen)));
+        transactions.emplace_back(Transaction(users[random(gen)],users[random(gen)],amount(gen)));
     }
     blockchain.addAllTransactions(transactions);
 };

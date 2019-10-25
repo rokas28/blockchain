@@ -29,4 +29,7 @@ public:
     }
 };
 
+void transactionValidation(vector<Transaction>& allTransactions);
+void balanceValidation(vector<Transaction>& allTransactions);
+
 #endif //BLOCKCHAIN_BLOCKCHAIN_H
