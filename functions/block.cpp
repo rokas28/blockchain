@@ -60,13 +60,22 @@ string Block::genBlockHash(){
     return hash(ss.str());
 }
 
-void Block::mineBlock(uint32_t difficulty){
+void Block::mineBlock(uint32_t difficulty, int &done, int time){
 
+    int times = 0;
     string str(difficulty,'0');
     //cout << "string str(difficulty,0);" << endl;
     do {
+        times++;
         nonce_++; //cout << "nonce++ = " << nonce_ << endl;
         blockHash_ = genBlockHash(); //cout << "blockHash = genBlockHash(); = " << blockHash_ << endl;
+        if( times == time){
+            done = 0;
+            blockHash_="";
+            //cout << "failed at: " << times << endl;
+            break;
+        }
+        done = 1;
     } while (blockHash_.substr(0, difficulty) != str);
     cout << blockHash_ << endl;
 }

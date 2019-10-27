@@ -53,7 +53,7 @@ private:
     int index_;
     int nonce_;
     string prevHash_;
-    string blockHash_;
+    string blockHash_ = "";
     string merkleRootHash_;
     string timestamp_;
     uint32_t difficulty_;
@@ -73,7 +73,7 @@ public:
     vector<Transaction> getTransactions();
     void Block::setPrevHash(string a);
     string genBlockHash();
-    void mineBlock(uint32_t difficulty);
+    void mineBlock(uint32_t difficulty, int &done, int time);
     void setBlockTransactions(vector<Transaction> &allTransactions);
     void addTransaction(Transaction transaction){
         this->transactions_.push_back(transaction);
