@@ -11,3 +11,5 @@ Tai yra pirmoji programos versija.
 - `CMakeLists.txt` - Programos paleidimo failas.
 - `.gitignore` failas.
 - `README.md` failas.
+
+## [V0.2](https://github.com/rokas28/blockchain/releases/tag/v0.2) (2019-10-27)
