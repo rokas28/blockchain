@@ -173,7 +173,7 @@ void Blockchain::printBlockchain() {
     int i = length_;
     while (root_) {
         cout << "Block: " << i << " | Index: " << root_->getIndex() << " | Nonce: " << root_->getNonce() << " | Hash: " << root_->getBlockHash() << endl;
-        cout <<  " | Timestamp: " << root_->getTimestamp() << endl << endl;
+        cout <<  " | Timestamp: " << root_->getTimestamp() <<  " | MerkleTreeHash: " << root_->getMerkleRootHash() << endl << endl;
         root_ = root_->prevHash;
         i--;
     }

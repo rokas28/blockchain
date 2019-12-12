@@ -1,14 +1,16 @@
 #include <iostream>
+//#include <bitcoin/bitcoin.hpp>
 
 #include "headers/main.h"
 #include "headers/hash.h"
 #include "headers/block.h"
 #include "headers/blockchain.h"
 #include "headers/user.h"
+#include "headers/merkleTree.h"
 
 const int n = 1000;
 const int m = 1000;
-const int d = 1;
+const int d = 2;
 
 int main() {
 

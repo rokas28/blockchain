@@ -1,6 +1,7 @@
 #include "../headers/main.h"
 #include "../headers/block.h"
 #include "../headers/hash.h"
+#include "../headers/merkleTree.h"
 //#include "user.h"
 
 Block::Block(int index, uint32_t difficulty){
@@ -102,13 +103,28 @@ void Block::setBlockTransactions(vector<Transaction>& allTransactions){
 
 void Block::merkleRootHash(){
     //string transactionsHash;
-    stringstream ss;
+    //stringstream ss;
+    string hashForV;
+    vector<Node*> tranHashes;
     for(int i = 0; i < transactions_.size(); i++){
         //transactionsHash = transactionsHash + transactions_[i].sender_ + transactions_[i].receiver_;
-        ss << transactions_[i].sender_.getPublicKey() << transactions_[i].receiver_.getPublicKey() << transactions_[i].amount_;
+        //ss << transactions_[i].sender_.getPublicKey() << transactions_[i].receiver_.getPublicKey() << transactions_[i].amount_;
+        hashForV = transactions_[i].sender_.getPublicKey() + transactions_[i].receiver_.getPublicKey() + std::to_string(transactions_[i].amount_);
+        //cout << " ____-_ " << hashForV << endl;
+        //cout << transactions_[i].amount_ << endl;
+        tranHashes.push_back(new Node(hash(hashForV)));
     }
+    for (unsigned int i = 0; i < tranHashes.size(); i++) {
+        tranHashes[i]->left = NULL;
+        tranHashes[i]->right = NULL;
+    }
+    MerkleTree *hashTree = new MerkleTree(tranHashes);
+    //cout << hashTree->root->hash << endl;
+    merkleRootHash_ = hashTree->root->hash;
+    //cout << "merkleRootHash_: " << merkleRootHash_;
+    delete hashTree;
     //cout << transactionsHash << endl;
-    merkleRootHash_ = hash(ss.str());
+    //merkleRootHash_ = hash(ss.str());
     //cout << "  merkleRootHash(): " << merkleRootHash_ << endl;
 };
 
